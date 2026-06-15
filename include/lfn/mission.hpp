@@ -12,13 +12,13 @@ namespace lfn {
 
 struct MissionConfig {
   double dt{0.1};
-  int max_steps{700};
-  int replan_interval{20};
+  int max_steps{900};
+  int replan_interval{12};
   int gps_interval{5};
   int yaw_interval{3};
   int lidar_interval{10};
-  double goal_tolerance{0.45};
-  double robot_radius{0.45};
+  double goal_tolerance{0.55};
+  double robot_radius{0.30};
 };
 
 struct MissionReport {

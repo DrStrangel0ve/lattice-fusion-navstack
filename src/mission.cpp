@@ -42,23 +42,23 @@ MissionReport MissionSimulator::run() {
   MissionReport report;
 
   AStarPlanner global_planner({true, 1.05, 2.2, 225, config_.robot_radius});
-  PurePursuitController controller({1.3, 1.25, 1.3, config_.goal_tolerance, 2.2});
-  LatticePlanner local_planner({2.0,
+  PurePursuitController controller({1.1, 0.95, 1.2, config_.goal_tolerance, 2.2});
+  LatticePlanner local_planner({1.8,
                                 0.1,
                                 config_.robot_radius,
                                 0.0,
-                                1.35,
-                                1.35,
-                                0.45,
-                                0.75,
+                                1.05,
+                                1.25,
+                                0.30,
+                                0.65,
                                 7,
                                 9,
-                                6.5,
-                                1.6,
-                                3.5,
-                                0.6,
-                                0.2,
+                                6.0,
                                 1.7,
+                                4.2,
+                                1.1,
+                                0.35,
+                                1.9,
                                 225});
   LidarSimulator lidar({91, kPi, 0.05, 9.0, 0.05});
 
@@ -89,8 +89,8 @@ MissionReport MissionSimulator::run() {
     const Twist2D reference = controller.command(ekf.pose(), active_path);
     const LocalPlan local = local_planner.plan(map_, ekf.pose(), current_command, active_path, reference);
     Twist2D command = local.success ? local.command : reference;
-    command.linear = clamp(command.linear, 0.0, 1.35);
-    command.angular = clamp(command.angular, -1.35, 1.35);
+    command.linear = clamp(command.linear, 0.0, 1.05);
+    command.angular = clamp(command.angular, -1.25, 1.25);
 
     const Twist2D realized{command.linear * 0.985, command.angular + 0.006};
     true_pose = integrate_unicycle(true_pose, realized, config_.dt);
