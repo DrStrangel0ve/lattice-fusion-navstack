@@ -98,7 +98,11 @@ void test_mission_simulation_reaches_goal() {
     std::cerr << "mission diagnostics: final_error=" << report.final_error
               << " collision=" << std::boolalpha << report.collision
               << " timed_out=" << report.timed_out << " steps=" << report.steps
-              << " replans=" << report.replans << " lidar_scans=" << report.lidar_scans << '\n';
+              << " replans=" << report.replans << " lidar_scans=" << report.lidar_scans
+              << " final_true_pose=(" << report.final_true_pose.position.x << ", "
+              << report.final_true_pose.position.y << ", yaw " << report.final_true_pose.yaw << ")"
+              << " final_estimated_pose=(" << report.final_estimated_pose.position.x << ", "
+              << report.final_estimated_pose.position.y << ", yaw " << report.final_estimated_pose.yaw << ")\n";
   }
   require(report.success, "mission simulator reaches the goal");
   require(report.final_error < 0.65, "mission final error stays within tolerance");

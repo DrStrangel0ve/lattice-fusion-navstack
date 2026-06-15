@@ -89,6 +89,10 @@ MissionReport MissionSimulator::run() {
     const Twist2D reference = controller.command(ekf.pose(), active_path);
     const LocalPlan local = local_planner.plan(map_, ekf.pose(), current_command, active_path, reference);
     Twist2D command = local.success ? local.command : reference;
+    if (distance(ekf.pose().position, goal_) > config_.goal_tolerance * 2.0 && reference.linear > 0.10 &&
+        command.linear < 0.08) {
+      command = reference;
+    }
     command.linear = clamp(command.linear, 0.0, 1.05);
     command.angular = clamp(command.angular, -1.25, 1.25);
 
