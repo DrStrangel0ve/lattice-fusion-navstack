@@ -27,7 +27,8 @@ GridMap make_demo_map(double robot_radius) {
   map.add_rect({19.5, 0.0}, {20.0, 12.0});
 
   map.add_rect({4.0, 0.5}, {4.5, 6.2});
-  map.add_rect({8.0, 4.0}, {8.5, 11.5});
+  map.add_rect({8.0, 4.0}, {8.5, 5.5});
+  map.add_rect({8.0, 7.2}, {8.5, 11.5});
   map.add_rect({12.0, 0.5}, {12.5, 6.2});
   map.add_rect({14.5, 8.5}, {16.5, 9.0});
   map.add_rect({15.0, 2.2}, {16.0, 2.7});
