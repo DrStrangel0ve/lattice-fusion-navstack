@@ -26,9 +26,9 @@ GridMap make_demo_map(double robot_radius) {
   map.add_rect({0.0, 0.0}, {0.5, 12.0});
   map.add_rect({19.5, 0.0}, {20.0, 12.0});
 
-  map.add_rect({4.0, 0.5}, {4.5, 7.2});
+  map.add_rect({4.0, 0.5}, {4.5, 6.2});
   map.add_rect({8.0, 4.0}, {8.5, 11.5});
-  map.add_rect({12.0, 0.5}, {12.5, 7.2});
+  map.add_rect({12.0, 0.5}, {12.5, 6.2});
   map.add_rect({14.5, 8.5}, {16.5, 9.0});
   map.add_rect({15.0, 2.2}, {16.0, 2.7});
 
@@ -127,6 +127,8 @@ MissionReport MissionSimulator::run() {
   }
 
   report.success = report.success && !collision;
+  report.collision = collision;
+  report.timed_out = !report.success && !collision;
   report.final_true_pose = true_pose;
   report.final_estimated_pose = ekf.pose();
   report.final_error = distance(true_pose.position, goal_);

@@ -23,6 +23,8 @@ struct MissionConfig {
 
 struct MissionReport {
   bool success{false};
+  bool collision{false};
+  bool timed_out{false};
   int steps{0};
   int replans{0};
   int lidar_scans{0};

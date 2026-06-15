@@ -94,6 +94,12 @@ void test_lattice_planner_selects_forward_motion() {
 void test_mission_simulation_reaches_goal() {
   lfn::MissionSimulator simulator;
   const lfn::MissionReport report = simulator.run();
+  if (!report.success) {
+    std::cerr << "mission diagnostics: final_error=" << report.final_error
+              << " collision=" << std::boolalpha << report.collision
+              << " timed_out=" << report.timed_out << " steps=" << report.steps
+              << " replans=" << report.replans << " lidar_scans=" << report.lidar_scans << '\n';
+  }
   require(report.success, "mission simulator reaches the goal");
   require(report.final_error < 0.65, "mission final error stays within tolerance");
   require(report.replans > 0, "mission performs at least one global replan");

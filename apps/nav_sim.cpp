@@ -9,6 +9,8 @@ int main() {
 
   std::cout << "lattice-fusion-navstack mission report\n";
   std::cout << "success: " << std::boolalpha << report.success << '\n';
+  std::cout << "collision: " << std::boolalpha << report.collision << '\n';
+  std::cout << "timed_out: " << std::boolalpha << report.timed_out << '\n';
   std::cout << "steps: " << report.steps << '\n';
   std::cout << "replans: " << report.replans << '\n';
   std::cout << "lidar_scans: " << report.lidar_scans << '\n';
